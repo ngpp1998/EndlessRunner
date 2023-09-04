@@ -115,10 +115,20 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator Slide()
     {
+       // isSliding = true;
+       // controller.center = new Vector3(0, -0.5f, 0);
+       // controller.height = 1;
+        //yield return new WaitForSeconds(1.3f);
+        //controller.center = new Vector3(0, 0, 0);
+        //controller.height = 2;
+        //isSliding = false;
         isSliding = true;
         controller.center = new Vector3(0, -0.5f, 0);
         controller.height = 1;
+        float originalGravity = gravity;
+        gravity *= 2f; // Increase gravity for faster descent during slide
         yield return new WaitForSeconds(1.3f);
+        gravity = originalGravity; // Restore the original gravity
         controller.center = new Vector3(0, 0, 0);
         controller.height = 2;
         isSliding = false;
