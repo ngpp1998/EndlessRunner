@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour
 
     private bool isSliding = false;
 
+    public Animator animator;
+
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -27,13 +29,17 @@ public class PlayerController : MonoBehaviour
     {
         if (!PlayerManager.isGameStarted)
             return;
-        
+
+        animator.SetBool("gameStart", true);
+
         //increasing the speed over time
         if (forwardSpeed < maxSpeed)
             forwardSpeed += 0.1f * Time.deltaTime;
 
         direction.z = forwardSpeed;
 
+        animator.SetBool("grounded", controller.isGrounded);
+        
         if (controller.isGrounded)
         {
             // direction.y = -1;
@@ -115,22 +121,27 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator Slide()
     {
-       // isSliding = true;
-       // controller.center = new Vector3(0, -0.5f, 0);
-       // controller.height = 1;
+        // isSliding = true;
+        // controller.center = new Vector3(0, -0.5f, 0);
+        // controller.height = 1;
         //yield return new WaitForSeconds(1.3f);
         //controller.center = new Vector3(0, 0, 0);
         //controller.height = 2;
         //isSliding = false;
+
+        animator.SetBool("sliding", true);
+
         isSliding = true;
         controller.center = new Vector3(0, -0.5f, 0);
         controller.height = 1;
         float originalGravity = gravity;
         gravity *= 2f; // Increase gravity for faster descent during slide
-        yield return new WaitForSeconds(1.3f);
+        yield return new WaitForSeconds(0.8f);
         gravity = originalGravity; // Restore the original gravity
         controller.center = new Vector3(0, 0, 0);
         controller.height = 2;
         isSliding = false;
+
+        animator.SetBool("sliding", false);
     }
 }
