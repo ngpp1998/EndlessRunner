@@ -95,6 +95,7 @@ public class PlayerController : MonoBehaviour
             controller.Move(moveDir);
         else
             controller.Move(diff);
+
     }
 
     private void FixedUpdate()

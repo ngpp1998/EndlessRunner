@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class CoinController : MonoBehaviour
 {
+    public Transform playerTransform;
+    public float moveSpeed = 17f;
+
+    CoinMove coinMoveScript;
+    
     // Start is called before the first frame update
     void Start()
     {
-        
+        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        coinMoveScript = gameObject.GetComponent<CoinMove>();
     }
 
     // Update is called once per frame
