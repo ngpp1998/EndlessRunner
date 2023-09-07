@@ -24,12 +24,4 @@ public class CoinMove : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, coinControllerScript.playerTransform.position, coinControllerScript.moveSpeed * Time.deltaTime);
         }
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.gameObject.tag == "Player")
-        {
-            Destroy(gameObject);
-        }
-    }
 }

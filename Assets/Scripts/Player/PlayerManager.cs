@@ -9,6 +9,8 @@ public class PlayerManager : MonoBehaviour
     public GameObject gameOverPanel;
     public static bool isGameStarted;
     public GameObject startingText;
+    public GameObject redPotText;
+    public GameObject greenPotText;
     public static int numberOfCoins;
     public Text coinsText;
     // Start is called before the first frame update
@@ -33,6 +35,8 @@ public class PlayerManager : MonoBehaviour
         {
             isGameStarted = true;
             Destroy(startingText);
+            Destroy(redPotText);
+            Destroy(greenPotText);
         }
     }
 }

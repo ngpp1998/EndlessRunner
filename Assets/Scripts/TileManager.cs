@@ -10,7 +10,8 @@ public class TileManager : MonoBehaviour
     public int numberOfTiles = 5;
     private List<GameObject> activeTiles = new List<GameObject>();
     public Transform playerTransform;
-    private int tilesSinceTile8 = 0;
+    private int tilesSinceTile10 = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +20,7 @@ public class TileManager : MonoBehaviour
             if (i == 0)
                 SpawnTile(0);
             else
-                SpawnTile(Random.Range(0, 7));
+                SpawnTile(Random.Range(0, 9));
         }
     }
 
@@ -28,15 +29,15 @@ public class TileManager : MonoBehaviour
     {
         if(playerTransform.position.z - 35 > zSpawn - (numberOfTiles * tileLength))
         {
-            if (tilesSinceTile8 >= 10)
+            if (tilesSinceTile10 >= 15)
             {
-                SpawnTile(7); // Spawn Tile8 (index 7 of the list)
-                tilesSinceTile8 = 0; // Reset the counter
+                SpawnTile(9); // Spawn Tile8 (index 7 of the list)
+                tilesSinceTile10 = 0; // Reset the counter
             }
             else
             {
-                SpawnTile(Random.Range(0, 7));
-                tilesSinceTile8++; // Increment the counter
+                SpawnTile(Random.Range(0, 9));
+                tilesSinceTile10 ++;
             }
             DeleteTile();
         }

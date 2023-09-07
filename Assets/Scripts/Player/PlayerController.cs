@@ -115,8 +115,8 @@ public class PlayerController : MonoBehaviour
     {
         if (hit.transform.tag == "Obstacle")
         {
-            PlayerManager.gameOver = true;
             FindObjectOfType<AudioManager>().PlaySound("GameOver");
+            PlayerManager.gameOver = true;
         }
     }
 
