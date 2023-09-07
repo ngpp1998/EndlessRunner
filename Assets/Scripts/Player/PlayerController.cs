@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
 
         //increasing the speed over time
         if (forwardSpeed < maxSpeed)
-            forwardSpeed += 0.1f * Time.deltaTime;
+            forwardSpeed += 0.2f * Time.deltaTime;
 
         direction.z = forwardSpeed;
 
