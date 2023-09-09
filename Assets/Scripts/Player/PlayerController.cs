@@ -115,28 +115,19 @@ public class PlayerController : MonoBehaviour
     {
         if (hit.transform.tag == "Obstacle")
         {
-            FindObjectOfType<AudioManager>().PlaySound("GameOver");
-            PlayerManager.gameOver = true;
+            
         }
     }
 
     private IEnumerator Slide()
     {
-        // isSliding = true;
-        // controller.center = new Vector3(0, -0.5f, 0);
-        // controller.height = 1;
-        //yield return new WaitForSeconds(1.3f);
-        //controller.center = new Vector3(0, 0, 0);
-        //controller.height = 2;
-        //isSliding = false;
-
         animator.SetBool("sliding", true);
 
         isSliding = true;
         controller.center = new Vector3(0, -0.5f, 0);
         controller.height = 1;
         float originalGravity = gravity;
-        gravity *= 2f; // Increase gravity for faster descent during slide
+        gravity *= 20f; // Increase gravity for faster descent during slide
         yield return new WaitForSeconds(0.8f);
         gravity = originalGravity; // Restore the original gravity
         controller.center = new Vector3(0, 0, 0);

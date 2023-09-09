@@ -11,6 +11,8 @@ public class PlayerManager : MonoBehaviour
     public GameObject startingText;
     public GameObject redPotText;
     public GameObject greenPotText;
+    public GameObject controlsText;
+    public GameObject rulesText;
     public static int numberOfCoins;
     public Text coinsText;
     // Start is called before the first frame update
@@ -30,13 +32,15 @@ public class PlayerManager : MonoBehaviour
             Time.timeScale = 0;
             gameOverPanel.SetActive(true);
         }
-        coinsText.text = "Coins: " + numberOfCoins;
+        coinsText.text = "COINS: " + numberOfCoins;
         if (SwipeManager.tap)
         {
             isGameStarted = true;
             Destroy(startingText);
             Destroy(redPotText);
             Destroy(greenPotText);
+            Destroy(controlsText);
+            Destroy(rulesText);
         }
     }
 }
