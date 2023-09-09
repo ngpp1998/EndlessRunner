@@ -29,7 +29,6 @@ public class FollowPlayer : MonoBehaviour
             if (distanceToPlayer < 1.0f) // Adjust this value based on your desired collision distance
             {
                 // Game over logic (e.g., reload the scene)
-                Camera.main.transform.Rotate(30f, 0f, 0f);
                 PlayerManager.gameOver = true;
                 
             }
