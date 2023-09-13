@@ -11,12 +11,11 @@ public class ObstacleFeverPowerUp : MonoBehaviour
         feverPowerUp = FindObjectOfType<FeverPowerUp>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (feverPowerUp.isActivated == true)
         {
-            Destroy(gameObject);
+            Destroy(gameObject); //destroying all obstacles with this script intact
         }
     }
 }

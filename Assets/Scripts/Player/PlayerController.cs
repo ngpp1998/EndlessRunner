@@ -4,19 +4,15 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    // Start is called before the first frame update
     private CharacterController controller;
     private Vector3 direction;
     public float forwardSpeed;
     public float maxSpeed;
-
-    private int desiredLane = 1;//0:left 1:middle 2:right
-    public float laneDistance = 4;//distance between two lanes
+    private int desiredLane = 1;
+    public float laneDistance = 4;
     public float jumpForce;
     public float gravity = -20;
-
     private bool isSliding = false;
-
     public Animator animator;
 
     void Start()
@@ -24,7 +20,6 @@ public class PlayerController : MonoBehaviour
         controller = GetComponent<CharacterController>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (!PlayerManager.isGameStarted)
@@ -32,7 +27,7 @@ public class PlayerController : MonoBehaviour
 
         animator.SetBool("gameStart", true);
 
-        //increasing the speed over time
+        //increasing speed over time
         if (forwardSpeed < maxSpeed)
             forwardSpeed += 0.2f * Time.deltaTime;
 
@@ -42,7 +37,6 @@ public class PlayerController : MonoBehaviour
         
         if (controller.isGrounded)
         {
-            // direction.y = -1;
             if (SwipeManager.swipeUp)
             {
                 Jump();
@@ -57,7 +51,7 @@ public class PlayerController : MonoBehaviour
         {
             StartCoroutine(Slide());
         }
-        //gather the inputs on which lane we should be
+
         if (SwipeManager.swipeRight)
         {
             desiredLane++;
@@ -72,8 +66,6 @@ public class PlayerController : MonoBehaviour
                 desiredLane = 0;
         }
 
-        //calculate where we should be in the future
-
         Vector3 targetPosition = transform.position.z * transform.forward + transform.position.y * transform.up;
 
         if(desiredLane == 0)
@@ -84,9 +76,6 @@ public class PlayerController : MonoBehaviour
             targetPosition += Vector3.right * laneDistance;
         }
 
-        //transform.position = Vector3.Lerp(transform.position, targetPosition, 80 * Time.fixedDeltaTime);
-        //controller.center = controller.center;
-
         if (transform.position == targetPosition)
             return;
         Vector3 diff = targetPosition - transform.position;
@@ -95,7 +84,6 @@ public class PlayerController : MonoBehaviour
             controller.Move(moveDir);
         else
             controller.Move(diff);
-
     }
 
     private void FixedUpdate()
@@ -115,25 +103,23 @@ public class PlayerController : MonoBehaviour
     {
         if (hit.transform.tag == "Obstacle")
         {
-            
+            //old code for game over when player hits obstacles
         }
     }
 
     private IEnumerator Slide()
     {
         animator.SetBool("sliding", true);
-
         isSliding = true;
         controller.center = new Vector3(0, -0.5f, 0);
         controller.height = 1;
         float originalGravity = gravity;
-        gravity *= 20f; // Increase gravity for faster descent during slide
+        gravity *= 20f; //increases the gravity for faster descent during slide
         yield return new WaitForSeconds(0.8f);
-        gravity = originalGravity; // Restore the original gravity
+        gravity = originalGravity; //restore the original gravity
         controller.center = new Vector3(0, 0, 0);
         controller.height = 2;
         isSliding = false;
-
         animator.SetBool("sliding", false);
     }
 }

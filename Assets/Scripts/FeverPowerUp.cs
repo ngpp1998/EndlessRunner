@@ -10,9 +10,7 @@ public class FeverPowerUp : MonoBehaviour
 
     void Start()
     {
-        // Get the Renderer component of the object
         objectRenderer = GetComponent<Renderer>();
-
     }
 
     private void OnTriggerEnter(Collider other)
@@ -24,7 +22,7 @@ public class FeverPowerUp : MonoBehaviour
                 isActivated = true;
                 ActivateForDuration();
             }
-            // Hide the object immediately
+            //hide the object
             objectRenderer.enabled = false;
             DestroyObjectDelayed(10f);
         }
@@ -38,13 +36,11 @@ public class FeverPowerUp : MonoBehaviour
 
     private void DeactivateObject()
     {
-        //tilePuzzlePanel.SetActive(false);
         isActivated = false;
     }
 
     void DestroyObjectDelayed(float delay)
     {
-        // Use the Destroy method with a delay
         Destroy(gameObject, delay);
     }
 }

@@ -5,12 +5,11 @@ public class Events : MonoBehaviour
 {
     public void ReplayGame()
     {
-        SceneManager.LoadScene("Level");
+        SceneManager.LoadScene("Level"); //replay the game
     }
 
     public void QuitGame()
     {
-        SceneManager.LoadScene("Menu");
-        //Application.Quit();
+        SceneManager.LoadScene("Menu"); //brings player to main menu scene
     }
 }

@@ -12,34 +12,32 @@ public class TileManager : MonoBehaviour
     public Transform playerTransform;
     private int tilesSinceTile10 = 0;
 
-    // Start is called before the first frame update
     void Start()
     {
         for(int i = 0; i < numberOfTiles; i++)
         {
             if (i == 0)
-                SpawnTile(0);
+                SpawnTile(0); //spawn initial tile at the start
             else
                 SpawnTile(Random.Range(0, 9));
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(playerTransform.position.z - 35 > zSpawn - (numberOfTiles * tileLength))
         {
-            if (tilesSinceTile10 >= 15)
+            if (tilesSinceTile10 >= 15) //to spawn power up tiles after 15 normal tiles
             {
-                SpawnTile(9); // Spawn Tile8 (index 7 of the list)
-                tilesSinceTile10 = 0; // Reset the counter
+                SpawnTile(9); //spawn tile with power up
+                tilesSinceTile10 = 0; //reset back to 0
             }
             else
             {
-                SpawnTile(Random.Range(0, 9));
+                SpawnTile(Random.Range(0, 9)); //spawn normal tiles
                 tilesSinceTile10 ++;
             }
-            DeleteTile();
+            DeleteTile(); //delete tiles thay player has passed through
         }
     }
 

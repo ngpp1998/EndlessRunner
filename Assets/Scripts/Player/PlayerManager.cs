@@ -15,7 +15,7 @@ public class PlayerManager : MonoBehaviour
     public GameObject rulesText;
     public static int numberOfCoins;
     public Text coinsText;
-    // Start is called before the first frame update
+
     void Start()
     {
         gameOver = false;
@@ -24,15 +24,14 @@ public class PlayerManager : MonoBehaviour
         numberOfCoins = 0;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(gameOver)
         {
-            Time.timeScale = 0;
+            Time.timeScale = 0; //freezes the game
             gameOverPanel.SetActive(true);
         }
-        coinsText.text = "COINS: " + numberOfCoins;
+        coinsText.text = "COINS: " + numberOfCoins; //list the number of coins collected
         if (SwipeManager.tap)
         {
             isGameStarted = true;

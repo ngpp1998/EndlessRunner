@@ -6,7 +6,6 @@ public class AudioManager : MonoBehaviour
 {
     public Sound[] sounds;
 
-    // Start is called before the first frame update
     void Start()
     {
         foreach(Sound s in sounds)
@@ -16,7 +15,6 @@ public class AudioManager : MonoBehaviour
             s.source.loop = s.loop;
             s.source.volume = s.volume;
         }
-
         PlaySound("BackgroundMusic");
     }
 

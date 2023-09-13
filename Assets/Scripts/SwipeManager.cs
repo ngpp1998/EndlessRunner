@@ -42,7 +42,7 @@ public class SwipeManager : MonoBehaviour
         }
         #endregion
 
-        //Calculate the distance
+        //calculating the distance
         swipeDelta = Vector2.zero;
         if (isDragging)
         {
@@ -52,15 +52,13 @@ public class SwipeManager : MonoBehaviour
                 swipeDelta = (Vector2)Input.mousePosition - startTouch;
         }
 
-        //Did we cross the distance?
         if (swipeDelta.magnitude > 125)
         {
-            //Which direction?
             float x = swipeDelta.x;
             float y = swipeDelta.y;
             if (Mathf.Abs(x) > Mathf.Abs(y))
             {
-                //Left or Right
+                //left or right direction
                 if (x < 0)
                     swipeLeft = true;
                 else
@@ -68,13 +66,12 @@ public class SwipeManager : MonoBehaviour
             }
             else
             {
-                //Up or Down
+                //up or down direction
                 if (y < 0)
                     swipeDown = true;
                 else
                     swipeUp = true;
             }
-
             Reset();
         }
     }

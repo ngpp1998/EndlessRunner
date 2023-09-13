@@ -5,8 +5,6 @@ using UnityEngine;
 public class CoinMove : MonoBehaviour
 {
     CoinController coinControllerScript;
-    // Start is called before the first frame update
-
     private MagnetPowerUp magnetPowerUp;
 
     void Start()
@@ -16,9 +14,9 @@ public class CoinMove : MonoBehaviour
         magnetPowerUp = FindObjectOfType<MagnetPowerUp>();
     }
 
-    // Update is called once per frame
     void Update()
     {
+        //moves coins towards player
         if (magnetPowerUp.isActivated == true)
         {
             transform.position = Vector3.MoveTowards(transform.position, coinControllerScript.playerTransform.position, coinControllerScript.moveSpeed * Time.deltaTime);
